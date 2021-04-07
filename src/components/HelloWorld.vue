@@ -8,7 +8,7 @@
         >vue-cli documentation</a
       >.
     </p>
-    <h3>安装cli插件/h3>
+    <h3>安装cli插件</h3>
     <ul>
       <li>
         <a
