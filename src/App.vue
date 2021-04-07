@@ -11,6 +11,7 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  height: 100%;
 }
 .shadow-light {
   box-shadow: 0 2px 6px #e6ecf1;

@@ -1,5 +1,5 @@
 <template>
-  <div style="background-color: rgb(244, 246, 249)">
+  <div style="background-color: rgb(244, 246, 249);height:100%">
     <div class="container login">
       <a-row type="flex" justify="center">
         <a-col :xs="24" :sm="20" :md="12" :lg="8">
