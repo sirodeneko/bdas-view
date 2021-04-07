@@ -13,43 +13,79 @@
           <a-card title="登录" class="login-card" :headStyle="headStyles">
             <a-form
               :form="form"
-              :label-col="{ span: 5 }"
-              :wrapper-col="{ span: 16 }"
+              :label-col="{ span: 6 }"
+              :wrapper-col="{ span: 18 }"
               @submit="handleSubmit"
             >
-              <a-form-item label="Note">
+              <a-form-item label="用户类型">
+                <a-select
+                  v-decorator="[
+                    'u_type',
+                    {
+                      initialValue: 'user',
+                      rules: [
+                        {
+                          required: true,
+                          message: 'Please select your user_type!',
+                        },
+                      ],
+                    },
+                  ]"
+                  placeholder="选择你的用户类型"
+                  @change="handleSelectChange"
+                >
+                  <a-select-option value="user"> 普通用户 </a-select-option>
+                  <a-select-option value="university">
+                    学校用户
+                  </a-select-option>
+                </a-select>
+              </a-form-item>
+              <a-form-item label="学校" v-show="isShowUniversity">
                 <a-input
                   v-decorator="[
-                    'note',
+                    'university_name',
                     {
                       rules: [
-                        { required: true, message: 'Please input your note!' },
+                        {
+                          required: isShowUniversity,
+                          message: 'Please input yuor password!',
+                        },
                       ],
                     },
                   ]"
                 />
               </a-form-item>
-              <a-form-item label="Gender">
-                <a-select
+              <a-form-item label="用户名">
+                <a-input
                   v-decorator="[
-                    'gender',
+                    'user_name',
                     {
                       rules: [
                         {
                           required: true,
-                          message: 'Please select your gender!',
+                          message: 'Please input yuor name!',
                         },
                       ],
                     },
                   ]"
-                  placeholder="Select a option and change input text above"
-                  @change="handleSelectChange"
-                >
-                  <a-select-option value="male"> male </a-select-option>
-                  <a-select-option value="female"> female </a-select-option>
-                </a-select>
+                />
               </a-form-item>
-              <a-form-item :wrapper-col="{ span: 12, offset: 5 }">
+              <a-form-item label="密码">
+                <a-input
+                  v-decorator="[
+                    'password',
+                    {
+                      rules: [
+                        {
+                          required: true,
+                          message: 'Please input yuor password!',
+                        },
+                      ],
+                    },
+                  ]"
+                />
+              </a-form-item>
+              <a-form-item :wrapper-col="{ span: 12, offset: 6 }">
                 <a-button type="primary" html-type="submit"> Submit </a-button>
               </a-form-item>
             </a-form>
@@ -63,6 +99,8 @@
 <script>
 // @ is an alias to /src
 //import HelloWorld from "@/components/HelloWorld.vue";
+
+import {postLogin} from '@/api/login';
 
 export default {
   name: "Login",
@@ -78,7 +116,31 @@ export default {
         "text-align": "left",
         "font-weight": 700,
       },
+      isShowUniversity: false,
+      form: this.$form.createForm(this, { name: "coordinated" }),
+      aaa:"user",
     };
+  },
+  methods: {
+    handleSubmit(e) {
+      e.preventDefault();
+      this.form.validateFields((err, values) => {
+        if (!err) {
+          postLogin(values).then((res)=>{
+            console.log("返回值：",res);
+          })
+        } else {
+          console.log("出错了，值是: ",values);
+          console.log("出错了，错误是: ",err);
+        }
+      });
+    },
+    handleSelectChange(value) {
+      console.log(value);
+      //   this.form.setFieldsValue({
+      //     note: `Hi, ${value === 'male' ? 'man' : 'lady'}!`,
+      //   });
+    },
   },
   // components: {
   //   HelloWorld,
@@ -105,5 +167,6 @@ export default {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.03);
   background-color: #fff;
   border-radius: 3px;
+  font-weight: 700;
 }
 </style>
