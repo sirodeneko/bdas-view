@@ -10,47 +10,24 @@
               width="100"
             />
           </div>
-          <a-card title="登录" class="login-card" :headStyle="headStyles">
+          <a-card title="注册" class="login-card" :headStyle="headStyles">
             <a-form :form="form" @submit="handleSubmit">
-              <a-form-item label="用户类型">
-                <a-select
+              <a-form-item label="昵称">
+                <a-input
                   v-decorator="[
-                    'u_type',
+                    'nickname',
                     {
-                      initialValue: 'user',
                       rules: [
                         {
                           required: true,
-                          message: 'Please select your user_type!',
-                        },
-                      ],
-                    },
-                  ]"
-                  placeholder="选择你的用户类型"
-                  @change="handleSelectChange"
-                >
-                  <a-select-option value="user"> 普通用户 </a-select-option>
-                  <a-select-option value="university">
-                    学校用户
-                  </a-select-option>
-                </a-select>
-              </a-form-item>
-              <a-form-item label="学校" v-show="isShowUniversity">
-                <a-input
-                  v-decorator="[
-                    'university_name',
-                    {
-                      rules: [
-                        {
-                          required: isShowUniversity,
-                          message: 'Please input yuor password!',
+                          message: 'Please input yuor nickname!',
                         },
                       ],
                     },
                   ]"
                 />
               </a-form-item>
-              <a-form-item label="用户名">
+              <a-form-item label="账号">
                 <a-input
                   v-decorator="[
                     'user_name',
@@ -58,7 +35,7 @@
                       rules: [
                         {
                           required: true,
-                          message: 'Please input yuor name!',
+                          message: 'Please input yuor user_name!',
                         },
                       ],
                     },
@@ -81,19 +58,35 @@
                   type="password"
                 />
               </a-form-item>
+              <a-form-item label="确认密码">
+                <a-input
+                  v-decorator="[
+                    'password_confirm',
+                    {
+                      rules: [
+                        {
+                          required: true,
+                          message: 'Please input yuor password!',
+                        },
+                      ],
+                    },
+                  ]"
+                  type="password"
+                />
+              </a-form-item>
               <a-form-item>
                 <a-button
                   type="primary"
                   html-type="submit"
                   class="login-form-bnt"
                 >
-                  登录
+                  注册
                 </a-button>
               </a-form-item>
             </a-form>
           </a-card>
           <div class="login-bottom">
-            还没有账号？<a href="/register">马上注册 👉</a>
+            已经有了账号？<a href="/login">马上登录 👉</a>
           </div>
           <div class="login-bottom">Copyright © 2021 BDAS</div>
           <br />
@@ -106,10 +99,10 @@
 // @ is an alias to /src
 //import HelloWorld from "@/components/HelloWorld.vue";
 
-import { postLogin } from "@/api/login";
+import { postRegister } from "@/api/login";
 
 export default {
-  name: "Login",
+  name: "Register",
   data() {
     return {
       headStyles: {
@@ -132,22 +125,22 @@ export default {
       e.preventDefault();
       this.form.validateFields((err, values) => {
         if (!err) {
-          postLogin(values)
+          postRegister(values)
             .then((res) => {
               // console.log("返回值：", res);
               if (res.code != 0) {
-                this.$message.error("登陆失败！！！" + res.msg);
-                console.log("登陆失败", res);
+                this.$message.error("注册失败！！！" + res.msg);
+                console.log("注册失败", res);
               } else {
-                this.$message.success("登陆成功！！！");
+                this.$message.success("注册成功，请登陆");
                 this.$router.push({
-                  path: `/user`,
+                  path: `/login`,
                 });
               }
             })
             .catch((error) => {
-              this.$message.error("登陆失败！！！");
-              console.log("登录失败", error);
+              this.$message.error("注册失败！！！");
+              console.error("注册失败", error);
             });
         } else {
           console.log("出错了，值是: ", values);

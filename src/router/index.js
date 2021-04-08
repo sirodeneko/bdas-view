@@ -3,6 +3,10 @@ import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import About from "../views/About.vue";
 import Login from "../views/Login.vue";
+import Register from "../views/Register.vue";
+import Page404 from "../views/Page404.vue";
+import User from "../views/User.vue";
+import UserCenter from "../components/user/Center.vue";
 
 Vue.use(VueRouter);
 
@@ -10,15 +14,28 @@ const routes = [
   {
     path: "/",
     name: "Home",
-    components: {
-      default: Home,
-      aaa: About,
-    },
+    component: Home,
   },
   {
     path: "/login",
     name: "Login",
     component: Login,
+  },
+  {
+    path: "/register",
+    name: "Register",
+    component: Register,
+  },
+  {
+    path: "/user",
+    name: "User",
+    component:User,
+    children:[
+      {
+        path:"/",
+        component:UserCenter,
+      }
+    ]
   },
   {
     path: "/about",
@@ -27,6 +44,12 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: About,
+  },
+  {
+    path: "/*",
+    name: "error-404",
+    meta: { title: "404-页面不存在" },
+    component: Page404,
   },
 ];
 
