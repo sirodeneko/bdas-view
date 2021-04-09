@@ -86,7 +86,7 @@
             </a-form>
           </a-card>
           <div class="login-bottom">
-            已经有了账号？<a href="/login">马上登录 👉</a>
+            已经有了账号？<router-link to="/register">马上登录 👉</router-link>
           </div>
           <div class="login-bottom">Copyright © 2021 BDAS</div>
           <br />

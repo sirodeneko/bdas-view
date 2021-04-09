@@ -93,7 +93,7 @@
             </a-form>
           </a-card>
           <div class="login-bottom">
-            还没有账号？<a href="/register">马上注册 👉</a>
+            还没有账号？ <router-link to="/register">马上注册 👉</router-link>
           </div>
           <div class="login-bottom">Copyright © 2021 BDAS</div>
           <br />
@@ -140,9 +140,15 @@ export default {
                 console.log("登陆失败", res);
               } else {
                 this.$message.success("登陆成功！！！");
-                this.$router.push({
-                  path: `/user`,
-                });
+                if (values.u_type == "user") {
+                  this.$router.push({
+                    path: `/user`,
+                  });
+                }else{
+                  this.$router.push({
+                    path: `/university`,
+                  });
+                }
               }
             })
             .catch((error) => {

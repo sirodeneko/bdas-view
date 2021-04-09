@@ -17,7 +17,7 @@
 
           <a-menu-item key="0">
             <a-icon type="bank" />
-            <router-link to="/user"> 用户首页 </router-link></a-menu-item
+            <router-link to="/university"> 用户首页 </router-link></a-menu-item
           >
         </a-menu-item-group>
         <a-menu-item-group key="g1">
@@ -26,9 +26,8 @@
           </template>
           <a-menu-item key="1">
             <a-icon type="user" />
-            <router-link to="/user/info"> 用户中心 </router-link>
+            <router-link to="/university/info"> 用户中心 </router-link>
           </a-menu-item>
-          <a-menu-item key="2"> <a-icon type="audit" /> 我的证书 </a-menu-item>
         </a-menu-item-group>
         <a-menu-item-group key="g2">
           <template slot="title">
@@ -38,9 +37,19 @@
         </a-menu-item-group>
         <a-menu-item-group key="g3">
           <template slot="title">
+            <span>证书</span>
+          </template>
+          <a-menu-item key="4">
+            <a-icon type="audit" />
+            <router-link to=""> 证书提交 </router-link>
+          </a-menu-item>
+          <a-menu-item key="5"> <a-icon type="audit" /> 历史提交 </a-menu-item>
+        </a-menu-item-group>
+        <a-menu-item-group key="g4">
+          <template slot="title">
             <span>其他</span>
           </template>
-          <a-menu-item key="4" class="logout" @click="exit">
+          <a-menu-item key="10" class="logout" @click="exit">
             <a-icon type="logout" /> 退出登陆
           </a-menu-item>
         </a-menu-item-group>
@@ -59,10 +68,10 @@
 <script>
 // @ is an alias to /src
 //import HelloWorld from "@/components/HelloWorld.vue";
-import { userExit,getUserMe } from "@/api/login";
+import { UniversityExit,getUniversityMe } from "@/api/login";
 
 export default {
-  name: "User",
+  name: "University",
   data() {
     return {
       rightLayout: {
@@ -74,7 +83,7 @@ export default {
   },
   methods: {
     load() {
-      getUserMe()
+      getUniversityMe()
         .then((res) => {
           // console.log("返回值：", res);
           if (res.code != 0) {
@@ -84,7 +93,7 @@ export default {
               path: `/`,
             });
           } else {
-            this.$store.commit("setUserDate",res.data);
+            this.$store.commit("setUniversityData",res.data);
           }
         })
         .catch((error) => {
@@ -107,7 +116,7 @@ export default {
       console.log("onBreakpoint", broken);
     },
     exit(){
-      userExit();
+      UniversityExit();
        this.$router.push({
               path: `/`,
             });

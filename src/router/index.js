@@ -7,6 +7,9 @@ import Register from "../views/Register.vue";
 import Page404 from "../views/Page404.vue";
 import User from "../views/User.vue";
 import UserCenter from "../components/user/Center.vue";
+import UserInfo from "../components/user/Info.vue";
+import University from "../views/University.vue";
+import UniversityCenter from "../components/university/Center.vue";
 
 Vue.use(VueRouter);
 
@@ -32,8 +35,27 @@ const routes = [
     component:User,
     children:[
       {
-        path:"/",
+        path:"",
         component:UserCenter,
+      },
+      {
+        path:"info",
+        component:UserInfo,
+      }
+    ]
+  },
+  {
+    path:"/university",
+    name:"University",
+    component:University,
+    children:[
+      {
+        path:"",
+        component:UniversityCenter,
+      },
+      {
+        path:"info",
+        component:UserInfo,
       }
     ]
   },

@@ -20,7 +20,7 @@
           <div class="home-left">
             <h1>基于区块链的学位学历认证系统</h1>
             <div class="home-left-m-text">
-              通过vnt区块链加密保存您的信息，提供安全可信的学历证书管理认证服务
+              通过以太坊区块链加密保存您的信息，提供安全可信的学历证书管理认证服务
             </div>
             <div class="home-left-bnt-box">
               <router-link
@@ -79,9 +79,9 @@ export default {
       iconType:"login",
       navBntMsg: "登录",
       navBntUrl: "/login",
-      universityNum: 100,
-      userNum: 10000000,
-      certificateNum: 20000000,
+      universityNum: 233,
+      userNum: 12345678,
+      certificateNum: 23456789,
     };
   },
   methods: {

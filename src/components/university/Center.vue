@@ -5,7 +5,7 @@
       <a-col :span="24">
         <a-card title="公告" class="bdas-card" :headStyle="headStyles">
           <div class="">
-            <strong> 沈冠宇是傻逼 </strong>
+            <strong> 沈冠宇是傻逼(学校界面) </strong>
           </div>
         </a-card>
       </a-col>
@@ -18,7 +18,7 @@
 //import HelloWorld from "@/components/HelloWorld.vue";
 
 export default {
-  name: "UserCenter",
+  name: "UniversityCenter",
   data() {
     return {
       headStyles: {
