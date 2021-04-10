@@ -10,47 +10,9 @@
               width="100"
             />
           </div>
-          <a-card title="登录" class="login-card" :headStyle="headStyles">
+          <a-card title="管理员登录" class="login-card" :headStyle="headStyles">
             <a-form :form="form" @submit="handleSubmit">
-              <a-form-item label="用户类型">
-                <a-select
-                  v-decorator="[
-                    'u_type',
-                    {
-                      initialValue: 'user',
-                      rules: [
-                        {
-                          required: true,
-                          message: 'Please select your user_type!',
-                        },
-                      ],
-                    },
-                  ]"
-                  placeholder="选择你的用户类型"
-                  @change="handleSelectChange"
-                >
-                  <a-select-option value="user"> 普通用户 </a-select-option>
-                  <a-select-option value="university">
-                    学校用户
-                  </a-select-option>
-                </a-select>
-              </a-form-item>
-              <a-form-item label="学校" v-show="isShowUniversity">
-                <a-input
-                  v-decorator="[
-                    'university_name',
-                    {
-                      rules: [
-                        {
-                          required: isShowUniversity,
-                          message: 'Please input yuor password!',
-                        },
-                      ],
-                    },
-                  ]"
-                />
-              </a-form-item>
-              <a-form-item label="用户名">
+              <a-form-item label="账号">
                 <a-input
                   v-decorator="[
                     'user_name',
@@ -92,9 +54,9 @@
               </a-form-item>
             </a-form>
           </a-card>
-          <div class="login-bottom">
+          <!-- <div class="login-bottom">
             还没有账号？ <router-link to="/register">马上注册 👉</router-link>
-          </div>
+          </div> -->
           <div class="login-bottom">Copyright © 2021 BDAS</div>
           <br />
         </a-col>
@@ -122,7 +84,6 @@ export default {
         "text-align": "left",
         "font-weight": 700,
       },
-      isShowUniversity: false,
       form: this.$form.createForm(this, { name: "coordinated" }),
     };
   },
@@ -131,6 +92,7 @@ export default {
       e.preventDefault();
       this.form.validateFields((err, values) => {
         if (!err) {
+          values.u_type="admin";
           postLogin(values)
             .then((res) => {
               // console.log("返回值：", res);
@@ -139,15 +101,11 @@ export default {
                 console.log("登陆失败", res);
               } else {
                 this.$message.success("登陆成功！！！");
-                if (values.u_type == "user") {
+                
                   this.$router.push({
-                    path: `/user`,
+                    path: `/boos`,
                   });
-                }else{
-                  this.$router.push({
-                    path: `/university`,
-                  });
-                }
+                
               }
             })
             .catch((error) => {
@@ -159,14 +117,6 @@ export default {
           console.log("出错了，错误是: ", err);
         }
       });
-    },
-    handleSelectChange(value) {
-      //console.log(value);
-      if (value == "university") {
-        this.isShowUniversity = true;
-      } else {
-        this.isShowUniversity = false;
-      }
     },
   },
   // components: {

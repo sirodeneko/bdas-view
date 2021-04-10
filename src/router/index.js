@@ -10,6 +10,12 @@ import UserCenter from "../components/user/Center.vue";
 import UserInfo from "../components/user/Info.vue";
 import University from "../views/University.vue";
 import UniversityCenter from "../components/university/Center.vue";
+import Admin from "../views/Admin.vue";
+import AdminLogin from "../components/admin/Login.vue";
+import AdminCenter from "../components/admin/Center.vue";
+import AdminInfo from "../components/admin/Info.vue";
+import AdminAddUser from "../components/admin/AddUser.vue";
+import AdminModifyUser from "../components/admin/ModifyUser.vue";
 
 Vue.use(VueRouter);
 
@@ -31,33 +37,60 @@ const routes = [
   },
   {
     path: "/user",
-    name: "User",
-    component:User,
-    children:[
+    //name: "User",
+    component: User,
+    children: [
       {
-        path:"",
-        component:UserCenter,
+        path: "",
+        component: UserCenter,
       },
       {
-        path:"info",
-        component:UserInfo,
+        path: "info",
+        component: UserInfo,
       }
     ]
   },
   {
-    path:"/university",
-    name:"University",
-    component:University,
-    children:[
+    path: "/university",
+    //name: "University",
+    component: University,
+    children: [
       {
-        path:"",
-        component:UniversityCenter,
+        path: "",
+        component: UniversityCenter,
       },
       {
-        path:"info",
-        component:UserInfo,
+        path: "info",
+        component: UserInfo,
       }
     ]
+  },
+  {
+    path: "/boos",
+    //name: "Admin",
+    component: Admin,
+    children: [
+      {
+        path: "",
+        component: AdminCenter,
+      }, {
+        path: "info",
+        component: AdminInfo,
+      },
+      {
+        path:"add",
+        component:AdminAddUser,
+      },
+      {
+        path:"modify",
+        component:AdminModifyUser,
+      }
+    ]
+  },
+  {
+    path: "/login/boos",
+    name: "AdminLogin",
+    component: AdminLogin,
   },
   {
     path: "/about",

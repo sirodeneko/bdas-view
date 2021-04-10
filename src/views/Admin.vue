@@ -6,54 +6,77 @@
       @collapse="onCollapse"
       @breakpoint="onBreakpoint"
       theme="light"
-      :style="{ height: '100vh', position: 'fixed', left: 0, zIndex: 10 }"
+      :style="{height: '100vh', position: 'fixed', left: 0, zIndex: 10 }"
     >
+    <div :style="{overflowY:'auto',height: '99vh', }" >
       <div class="logo"><a href="/">DBAS学位认证系统</a></div>
-      <a-menu theme="light" mode="inline" :default-selected-keys="['0']">
+      <a-menu theme="light" mode="inline" :default-selected-keys="['00']">
         <a-menu-item-group key="g0">
           <template slot="title">
             <span>首页</span>
           </template>
 
-          <a-menu-item key="0">
+          <a-menu-item key="00">
             <a-icon type="bank" />
-            <router-link to="/university"> 用户首页 </router-link></a-menu-item
+            <router-link to="/boos"> 用户首页 </router-link></a-menu-item
           >
         </a-menu-item-group>
+
         <a-menu-item-group key="g1">
           <template slot="title">
             <span>我的</span>
           </template>
-          <a-menu-item key="1">
+          <a-menu-item key="10">
             <a-icon type="user" />
-            <router-link to="/university/info"> 用户中心 </router-link>
+            <router-link to="/boos/info"> 用户中心 </router-link>
           </a-menu-item>
         </a-menu-item-group>
+
+        <a-menu-item-group key="g5">
+          <template slot="title">
+            <span>账号</span>
+          </template>
+          <a-menu-item key="50">
+            <a-icon type="user-add" />
+            <router-link to="/boos/add"> 用户注册 </router-link>
+          </a-menu-item>
+          <a-menu-item key="51"> <a-icon type="edit" /> 
+           <router-link to="/boos/modify"> 修改用户 </router-link>
+          </a-menu-item>
+        </a-menu-item-group>
+
         <a-menu-item-group key="g2">
           <template slot="title">
             <span>消息</span>
           </template>
-          <a-menu-item key="3"> <a-icon type="mail" /> 消息通知 </a-menu-item>
+          <a-menu-item key="20"> <a-icon type="mail" /> 消息通知 </a-menu-item>
+          <a-menu-item key="21"> <a-icon type="notification" /> 发送消息 </a-menu-item>
         </a-menu-item-group>
-        <a-menu-item-group key="g3">
+
+        <a-menu-item-group key="g4">
+          <template slot="title">
+            <span>审核</span>
+          </template>
+          <a-menu-item key="40"> <a-icon type="contacts" /> 用户审核 </a-menu-item>
+          <a-menu-item key="41"> <a-icon type="file-done" />证书审核 </a-menu-item>
+        </a-menu-item-group>
+
+        <!-- <a-menu-item-group key="g5">
           <template slot="title">
             <span>证书</span>
           </template>
-          <a-menu-item key="4">
-            <a-icon type="audit" />
-            <router-link to=""> 证书提交 </router-link>
-          </a-menu-item>
-          <a-menu-item key="5"> <a-icon type="audit" /> 历史提交 </a-menu-item>
-        </a-menu-item-group>
-        <a-menu-item-group key="g4">
+        </a-menu-item-group> -->
+
+        <a-menu-item-group key="g3">
           <template slot="title">
             <span>其他</span>
           </template>
-          <a-menu-item key="10" class="logout" @click="exit">
+          <a-menu-item key="30" class="logout" @click="exit">
             <a-icon type="logout" /> 退出登陆
           </a-menu-item>
         </a-menu-item-group>
       </a-menu>
+      </div>
     </a-layout-sider>
     <a-layout :style="rightLayout">
       <div class="navbar-bg"></div>
@@ -68,10 +91,10 @@
 <script>
 // @ is an alias to /src
 //import HelloWorld from "@/components/HelloWorld.vue";
-import { universityExit,getUniversityMe } from "@/api/login";
+import { AdminExit, getAdminMe } from "@/api/login";
 
 export default {
-  name: "University",
+  name: "Admin",
   data() {
     return {
       rightLayout: {
@@ -83,7 +106,7 @@ export default {
   },
   methods: {
     load() {
-      getUniversityMe()
+      getAdminMe()
         .then((res) => {
           // console.log("返回值：", res);
           if (res.code != 0) {
@@ -93,14 +116,14 @@ export default {
               path: `/`,
             });
           } else {
-            this.$store.commit("setUniversityData",res.data);
+            this.$store.commit("setAdminDate", res.data);
           }
         })
         .catch((error) => {
           this.$message.error("网络错误！！！");
           this.$router.push({
-              path: `/`,
-            });
+            path: `/`,
+          });
           console.log("获取用户信息失败", error);
         });
     },
@@ -115,12 +138,12 @@ export default {
       }
       console.log("onBreakpoint", broken);
     },
-    exit(){
-      universityExit();
-       this.$router.push({
-              path: `/`,
-            });
-    }
+    exit() {
+      AdminExit();
+      this.$router.push({
+        path: `/`,
+      });
+    },
   },
   created() {
     this.load();

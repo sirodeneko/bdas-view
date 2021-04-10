@@ -98,7 +98,7 @@
 import { userIdentityAuth, getUserMe } from "@/api/login";
 
 export default {
-  name: "UserCenter",
+  name: "UserInfo",
   data() {
     return {
       headStyles: {

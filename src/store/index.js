@@ -7,13 +7,17 @@ export default new Vuex.Store({
   state: {
     userData: {},
     universityData: {},
+    adminData:{},
   },
   getters: {
     getUserDate(state) {
       return state.userData;
     },
-    getUniversityDataDate(state) {
+    getUniversityData(state) {
       return state.universityData;
+    },
+    getAdminData(state) {
+      return state.adminData;
     },
   },
   mutations: {
@@ -21,8 +25,11 @@ export default new Vuex.Store({
       state.userData = data;
     },
     setUniversityData(state,data) {
-      state.userData = data;
+      state.universityData = data;
     },
+    setAdminDate(state,data){
+      state.adminData = data;
+    }
   },
   actions: {},
   modules: {},

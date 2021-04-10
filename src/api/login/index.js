@@ -16,7 +16,22 @@ const userExit = () => axios.delete('/api/v1/user/logout').then(res => res.data)
 //获取学校个人信息
 const getUniversityMe = () => axios.get('/api/v1/university/me').then(res => res.data);
 // 学校用户退出登陆
-const UniversityExit = () => axios.delete('/api/v1/university/logout').then(res => res.data);
+const universityExit = () => axios.delete('/api/v1/university/logout').then(res => res.data);
+// 学校注册
+const universityRegister = form => axios.post('/api/v1/university/register', form).then(res => res.data);
+
+
+//获取管理员个人信息
+const getAdminMe = () => axios.get('/api/v1/admin/me').then(res => res.data);
+// 管理员用户退出登陆
+const AdminExit = () => axios.delete('/api/v1/admin/logout').then(res => res.data);
+// 获取用户
+const userInfo = form => axios.get('/api/v1/admin/userInfo', {params:form}).then(res => res.data);
+//更新普通用户信息
+const modifyUser = form => axios.put('/api/v1/admin/modify/user', form).then(res => res.data);
+//更新普通用户信息
+const modifyUniversity = form => axios.put('/api/v1/admin/modify/university', form).then(res => res.data);
+
 
 //更新用户信息
 const putRevise = form => axios.put('/api/v1/user/account', form).then(res => res.data);
@@ -36,5 +51,11 @@ export {
   getUserMe,
   userIdentityAuth,
   getUniversityMe,
-  UniversityExit,
+  universityExit,
+  getAdminMe,
+  AdminExit,
+  universityRegister,
+  userInfo,
+  modifyUser,
+  modifyUniversity,
 };
