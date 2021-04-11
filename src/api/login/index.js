@@ -32,6 +32,17 @@ const modifyUser = form => axios.put('/api/v1/admin/modify/user', form).then(res
 //更新普通用户信息
 const modifyUniversity = form => axios.put('/api/v1/admin/modify/university', form).then(res => res.data);
 
+// 获取消息inbox
+const inboxList = form => axios.get('/api/v1/inbox/list', {params:form}).then(res => res.data);
+// 查看消息
+const inboxLook = form => axios.get('/api/v1/inbox/looked', {params:form}).then(res => res.data);
+// 获取未读消息数量
+const inboxUnread = () => axios.get('/api/v1/inbox/list/unread').then(res => res.data);
+// 发送消息
+const inboxSend = (form) => axios.post('/api/v1/admin/inbox/send',form).then(res => res.data);
+
+
+
 
 //更新用户信息
 const putRevise = form => axios.put('/api/v1/user/account', form).then(res => res.data);
@@ -58,4 +69,8 @@ export {
   userInfo,
   modifyUser,
   modifyUniversity,
+  inboxList,
+  inboxLook,
+  inboxUnread,
+  inboxSend,
 };

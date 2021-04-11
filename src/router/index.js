@@ -16,6 +16,9 @@ import AdminCenter from "../components/admin/Center.vue";
 import AdminInfo from "../components/admin/Info.vue";
 import AdminAddUser from "../components/admin/AddUser.vue";
 import AdminModifyUser from "../components/admin/ModifyUser.vue";
+import AdminInbox from "../components/admin/Inbox.vue";
+import InboxView from "../components/admin/InboxView.vue";
+import InboxSend from "../components/admin/InboxSend.vue";
 
 Vue.use(VueRouter);
 
@@ -84,6 +87,21 @@ const routes = [
       {
         path:"modify",
         component:AdminModifyUser,
+      },
+      {
+        path:"inbox",
+        component:AdminInbox,
+        meta: {
+          keepAlive: true,
+        },
+      },
+      {
+        path:"inboxView",
+        component:InboxView,
+      },
+      {
+        path:"inboxSend",
+        component:InboxSend,
       }
     ]
   },

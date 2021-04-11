@@ -17,7 +17,7 @@
 
           <a-menu-item key="0">
             <a-icon type="bank" />
-            <router-link to="/university"> 用户首页 </router-link></a-menu-item
+            <router-link to="/university" class="a-inline"> 用户首页 </router-link></a-menu-item
           >
         </a-menu-item-group>
         <a-menu-item-group key="g1">
@@ -26,7 +26,7 @@
           </template>
           <a-menu-item key="1">
             <a-icon type="user" />
-            <router-link to="/university/info"> 用户中心 </router-link>
+            <router-link to="/university/info" class="a-inline"> 用户中心 </router-link>
           </a-menu-item>
         </a-menu-item-group>
         <a-menu-item-group key="g2">
@@ -41,7 +41,7 @@
           </template>
           <a-menu-item key="4">
             <a-icon type="audit" />
-            <router-link to=""> 证书提交 </router-link>
+            <router-link to="" class="a-inline"> 证书提交 </router-link>
           </a-menu-item>
           <a-menu-item key="5"> <a-icon type="audit" /> 历史提交 </a-menu-item>
         </a-menu-item-group>
@@ -136,7 +136,7 @@ export default {
   font-size: 14px;
   font-weight: 400;
   color: #6c757d;
-  a {
+  .a-inline {
     display: inline;
   }
   .logo {

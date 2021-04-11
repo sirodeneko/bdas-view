@@ -62,4 +62,11 @@
 .bdas-card{
   border-radius: 3px;
 }
+.bdas-badge{
+  .ant-badge-count{
+top: -2px;
+  right: -12px;
+  }
+  
+}
 </style>

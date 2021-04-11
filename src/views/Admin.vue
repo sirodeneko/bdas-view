@@ -6,81 +6,112 @@
       @collapse="onCollapse"
       @breakpoint="onBreakpoint"
       theme="light"
-      :style="{height: '100vh', position: 'fixed', left: 0, zIndex: 10 }"
+      :style="{ height: '100vh', position: 'fixed', left: 0, zIndex: 10 }"
     >
-    <div :style="{overflowY:'auto',height: '99vh', }" >
-      <div class="logo"><a href="/">DBAS学位认证系统</a></div>
-      <a-menu theme="light" mode="inline" :default-selected-keys="['00']">
-        <a-menu-item-group key="g0">
-          <template slot="title">
-            <span>首页</span>
-          </template>
+      <div :style="{ overflowY: 'auto', height: '99vh' }">
+        <div class="logo"><a href="/">DBAS学位认证系统</a></div>
+        <a-menu theme="light" mode="inline" :default-selected-keys="['00']">
+          <a-menu-item-group key="g0">
+            <template slot="title">
+              <span>首页</span>
+            </template>
 
-          <a-menu-item key="00">
-            <a-icon type="bank" />
-            <router-link to="/boos"> 用户首页 </router-link></a-menu-item
-          >
-        </a-menu-item-group>
+            <a-menu-item key="00">
+              <a-icon type="bank" />
+              <router-link to="/boos" class="a-inline">
+                用户首页
+              </router-link></a-menu-item
+            >
+          </a-menu-item-group>
 
-        <a-menu-item-group key="g1">
-          <template slot="title">
-            <span>我的</span>
-          </template>
-          <a-menu-item key="10">
-            <a-icon type="user" />
-            <router-link to="/boos/info"> 用户中心 </router-link>
-          </a-menu-item>
-        </a-menu-item-group>
+          <a-menu-item-group key="g1">
+            <template slot="title">
+              <span>我的</span>
+            </template>
+            <a-menu-item key="10">
+              <a-icon type="user" />
+              <router-link to="/boos/info" class="a-inline">
+                用户中心
+              </router-link>
+            </a-menu-item>
+          </a-menu-item-group>
 
-        <a-menu-item-group key="g5">
-          <template slot="title">
-            <span>账号</span>
-          </template>
-          <a-menu-item key="50">
-            <a-icon type="user-add" />
-            <router-link to="/boos/add"> 用户注册 </router-link>
-          </a-menu-item>
-          <a-menu-item key="51"> <a-icon type="edit" /> 
-           <router-link to="/boos/modify"> 修改用户 </router-link>
-          </a-menu-item>
-        </a-menu-item-group>
+          <a-menu-item-group key="g5">
+            <template slot="title">
+              <span>账号</span>
+            </template>
+            <a-menu-item key="50">
+              <a-icon type="user-add" />
+              <router-link to="/boos/add" class="a-inline">
+                添加用户
+              </router-link>
+            </a-menu-item>
+            <a-menu-item key="51">
+              <a-icon type="edit" />
+              <router-link to="/boos/modify" class="a-inline">
+                修改用户
+              </router-link>
+            </a-menu-item>
+          </a-menu-item-group>
 
-        <a-menu-item-group key="g2">
-          <template slot="title">
-            <span>消息</span>
-          </template>
-          <a-menu-item key="20"> <a-icon type="mail" /> 消息通知 </a-menu-item>
-          <a-menu-item key="21"> <a-icon type="notification" /> 发送消息 </a-menu-item>
-        </a-menu-item-group>
+          <a-menu-item-group key="g2">
+            <template slot="title">
+              <span>消息</span>
+            </template>
 
-        <a-menu-item-group key="g4">
-          <template slot="title">
-            <span>审核</span>
-          </template>
-          <a-menu-item key="40"> <a-icon type="contacts" /> 用户审核 </a-menu-item>
-          <a-menu-item key="41"> <a-icon type="file-done" />证书审核 </a-menu-item>
-        </a-menu-item-group>
+            <a-menu-item key="20" @click="upInboxNotCnt">
+              <a-icon type="mail" />
+              <a-badge :count="inboxNotCnt" class="bdas-badge">
+                <router-link to="/boos/inbox" class="a-inline">
+                  消息通知
+                </router-link>
+              </a-badge>
+            </a-menu-item>
+            <a-menu-item key="21">
+              <a-icon type="notification"/>
+              <router-link to="/boos/inboxSend" class="a-inline">
+                发送消息
+              </router-link>
+            </a-menu-item>
+          </a-menu-item-group>
 
-        <!-- <a-menu-item-group key="g5">
+          <a-menu-item-group key="g4">
+            <template slot="title">
+              <span>审核</span>
+            </template>
+            <a-menu-item key="40">
+              <a-icon type="contacts" /> 用户审核
+            </a-menu-item>
+            <a-menu-item key="41">
+              <a-icon type="file-done" />证书审核
+            </a-menu-item>
+          </a-menu-item-group>
+
+          <!-- <a-menu-item-group key="g5">
           <template slot="title">
             <span>证书</span>
           </template>
         </a-menu-item-group> -->
 
-        <a-menu-item-group key="g3">
-          <template slot="title">
-            <span>其他</span>
-          </template>
-          <a-menu-item key="30" class="logout" @click="exit">
-            <a-icon type="logout" /> 退出登陆
-          </a-menu-item>
-        </a-menu-item-group>
-      </a-menu>
+          <a-menu-item-group key="g3">
+            <template slot="title">
+              <span>其他</span>
+            </template>
+            <a-menu-item key="30" class="logout" @click="exit">
+              <a-icon type="logout" /> 退出登陆
+            </a-menu-item>
+          </a-menu-item-group>
+        </a-menu>
       </div>
     </a-layout-sider>
     <a-layout :style="rightLayout">
       <div class="navbar-bg"></div>
-      <div class="main-page"><router-view></router-view></div>
+      <div class="main-page">
+        <keep-alive>
+          <router-view v-if="$route.meta.keepAlive" />
+        </keep-alive>
+        <router-view v-if="!$route.meta.keepAlive" />
+      </div>
       <a-layout-footer style="text-align: center">
         Copyright © 2021 BDAS
       </a-layout-footer>
@@ -91,7 +122,7 @@
 <script>
 // @ is an alias to /src
 //import HelloWorld from "@/components/HelloWorld.vue";
-import { AdminExit, getAdminMe } from "@/api/login";
+import { AdminExit, getAdminMe, inboxUnread } from "@/api/login";
 
 export default {
   name: "Admin",
@@ -102,6 +133,7 @@ export default {
         transition: "margin-right 0.3s",
         height: "100vh",
       },
+      inboxNotCnt: 1,
     };
   },
   methods: {
@@ -126,6 +158,7 @@ export default {
           });
           console.log("获取用户信息失败", error);
         });
+      this.upInboxNotCnt();
     },
     onCollapse(collapsed, type) {
       console.log("onCollapse:", collapsed, type);
@@ -137,6 +170,13 @@ export default {
         this.rightLayout.marginLeft = "200px";
       }
       console.log("onBreakpoint", broken);
+    },
+    upInboxNotCnt() {
+      inboxUnread().then((res) => {
+        if (res.code == 0) {
+          this.inboxNotCnt = res.data;
+        }
+      });
     },
     exit() {
       AdminExit();
@@ -159,7 +199,7 @@ export default {
   font-size: 14px;
   font-weight: 400;
   color: #6c757d;
-  a {
+  .a-inline {
     display: inline;
   }
   .logo {

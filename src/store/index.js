@@ -8,6 +8,7 @@ export default new Vuex.Store({
     userData: {},
     universityData: {},
     adminData:{},
+    inboxData:{},
   },
   getters: {
     getUserDate(state) {
@@ -19,6 +20,9 @@ export default new Vuex.Store({
     getAdminData(state) {
       return state.adminData;
     },
+    getInboxData(state) {
+      return state.inboxData;
+    },
   },
   mutations: {
     setUserDate(state,data) {
@@ -29,6 +33,9 @@ export default new Vuex.Store({
     },
     setAdminDate(state,data){
       state.adminData = data;
+    },
+    setInboxData(state,data){
+      state.inboxData = data;
     }
   },
   actions: {},
