@@ -37,8 +37,9 @@
           <template slot="title">
             <span>消息</span>
           </template>
-          <a-menu-item key="3"> <a-icon type="mail"  @click="upInboxNotCnt"/>
-          <router-link to="/university/inbox" class="a-inline">
+          <a-menu-item key="3">
+            <a-icon type="mail" @click="upInboxNotCnt" />
+            <router-link to="/university/inbox" class="a-inline">
               <a-badge :count="inboxNotCnt" class="bdas-badge">
                 消息通知
               </a-badge>
@@ -83,7 +84,7 @@
 <script>
 // @ is an alias to /src
 //import HelloWorld from "@/components/HelloWorld.vue";
-import { universityExit, getUniversityMe,inboxUnread } from "@/api/login";
+import { universityExit, getUniversityMe, inboxUnread } from "@/api/login";
 
 export default {
   name: "University",

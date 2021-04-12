@@ -159,16 +159,16 @@ export default {
     },
     submitForm() {
       let postFunc;
-      let form=this.form;
-      let card_code=form.card_code;
+      let form = this.form;
+      let card_code = form.card_code;
       if (this.form.u_type == "user") {
         postFunc = modifyUser;
       } else {
         postFunc = modifyUniversity;
       }
 
-      if(!form.delivery){
-          form.card_code="";
+      if (!form.delivery) {
+        form.card_code = "";
       }
       postFunc(form)
         .then((res) => {
@@ -184,7 +184,7 @@ export default {
           this.$message.error("网络错误！！！");
           console.log("网络错误！！！", error);
         });
-        form.card_code=card_code;
+      form.card_code = card_code;
     },
     handleSelectChange(value) {
       //console.log(value);
@@ -241,8 +241,8 @@ export default {
   }
 }
 .admin-modify-form {
-    .ant-form-item-label{
-        font-weight: 700;
-    }
+  .ant-form-item-label {
+    font-weight: 700;
+  }
 }
 </style>

@@ -77,13 +77,13 @@
           <div class="user-card-item">
             <span class="user-card-item-1">姓名：</span>
             <span class="user-card-item-2">{{
-              userInfo.name=="" ? "未实名认证" : userInfo.name
+              userInfo.name == "" ? "未实名认证" : userInfo.name
             }}</span>
           </div>
           <div class="user-card-item">
             <span class="user-card-item-1">身份证号：</span>
             <span class="user-card-item-2">{{
-              userInfo.card_code=="" ? "未实名认证" : userInfo.card_code
+              userInfo.card_code == "" ? "未实名认证" : userInfo.card_code
             }}</span>
           </div>
         </a-card>
@@ -159,7 +159,7 @@ export default {
         !this.validatorIDCard(this.form.card_code) ||
         this.form.name == ""
       ) {
-          //console.log(this.form);
+        //console.log(this.form);
         this.$message.error("输入为空或者身份证号输入错误");
         this.confirmLoading = false;
         return;

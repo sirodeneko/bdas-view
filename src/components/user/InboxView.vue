@@ -8,8 +8,8 @@
     <a-row>
       <a-col :span="24" class="inbox-card">
         <a-card style="" class="shadow-light">
-          <div class="inbox-title">{{inbox.title}}</div>
-          <div class="inbox-subtitle">{{timeToString(inbox.created_at)}}</div>
+          <div class="inbox-title">{{ inbox.title }}</div>
+          <div class="inbox-subtitle">{{ timeToString(inbox.created_at) }}</div>
           <div class="inbox-body" v-html="inbox.body"></div>
         </a-card>
       </a-col>

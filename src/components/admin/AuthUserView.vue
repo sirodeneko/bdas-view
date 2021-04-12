@@ -139,10 +139,10 @@ export default {
         msg: this.form.msg,
         op: Number(this.form.op),
       };
-      
-      if(form.op!=0&&form.msg==""){
+
+      if (form.op != 0 && form.msg == "") {
         this.$message.error("请输入审核不通过原因");
-        return
+        return;
       }
       anthUser(form)
         .then((res) => {

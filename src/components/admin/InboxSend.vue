@@ -65,7 +65,7 @@
 <script>
 // @ is an alias to /src
 //import HelloWorld from "@/components/HelloWorld.vue";
-import { userInfo,inboxSend } from "@/api/login";
+import { userInfo, inboxSend } from "@/api/login";
 
 export default {
   name: "InboxSend",
@@ -147,8 +147,8 @@ export default {
             console.log("发送失败！！！", res);
           } else {
             this.$message.success("发送成功！！！");
-            this.form.title="";
-            this.form.body="";
+            this.form.title = "";
+            this.form.body = "";
           }
         })
         .catch((error) => {

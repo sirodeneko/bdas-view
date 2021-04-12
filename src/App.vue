@@ -59,14 +59,13 @@
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
     border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
-.bdas-card{
+.bdas-card {
   border-radius: 3px;
 }
-.bdas-badge{
-  .ant-badge-count{
-top: -2px;
-  right: -12px;
+.bdas-badge {
+  .ant-badge-count {
+    top: -2px;
+    right: -12px;
   }
-  
 }
 </style>

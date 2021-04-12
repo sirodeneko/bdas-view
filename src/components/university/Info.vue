@@ -10,7 +10,9 @@
           </div>
           <div class="user-card-item">
             <span class="user-card-item-1">账号：</span>
-            <span class="user-card-item-2">{{ userInfo.user_name }}&nbsp;(id:{{userInfo.id}})</span>
+            <span class="user-card-item-2"
+              >{{ userInfo.user_name }}&nbsp;(id:{{ userInfo.id }})</span
+            >
           </div>
           <div class="user-card-item">
             <span class="user-card-item-1">昵称：</span>
@@ -20,7 +22,6 @@
             <span class="user-card-item-1">用户类型：</span>
             <span class="user-card-item-2">高校管理员</span>
           </div>
-          
         </a-card>
       </a-col>
     </a-row>
@@ -53,7 +54,6 @@ export default {
     load() {
       // 初始化函数
     },
-    
   },
   created() {
     this.load();

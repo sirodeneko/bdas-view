@@ -81,7 +81,7 @@
               <span>审核</span>
             </template>
             <a-menu-item key="40">
-              <a-icon type="contacts" /> 
+              <a-icon type="contacts" />
               <router-link to="/boos/authUser" class="a-inline">
                 用户审核
               </router-link>

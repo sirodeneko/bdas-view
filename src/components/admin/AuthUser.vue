@@ -1,7 +1,7 @@
 <template>
   <div class="user-center">
     <div class="center-header"><h1>用户实名认证审核</h1></div>
-    <a-row >
+    <a-row>
       <a-col :span="24">
         <a-card title="消息列表" class="bdas-card" :headStyle="headStyles">
           <a-row class="inbox-card">
@@ -21,7 +21,11 @@
               >
                 <a-col :span="6">{{ item.id }} </a-col>
                 <a-col :span="6">{{ timeToString(item.created_at) }} </a-col>
-                <a-col :span="6">{{item.student_ac_msg.name}}(id:{{ item.student_ac_msg.user_id }}) </a-col>
+                <a-col :span="6"
+                  >{{ item.student_ac_msg.name }}(id:{{
+                    item.student_ac_msg.user_id
+                  }})
+                </a-col>
                 <a-col :span="6">
                   <a-button type="primary" @click="openAuth(item)">
                     审核
@@ -115,12 +119,12 @@ export default {
     timeToString(time) {
       return unixtimeToString(time);
     },
-    openAuth(item){
+    openAuth(item) {
       this.$store.commit("setUserAuth", item);
       this.$router.push({
         path: `/boos/authUserView`,
       });
-    }
+    },
   },
   created() {
     this.load();

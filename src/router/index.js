@@ -59,18 +59,18 @@ const routes = [
         component: UserInfo,
       },
       {
-        path:"inbox",
-        component:UserInbox,
+        path: "inbox",
+        component: UserInbox,
         meta: {
           keepAlive: true,
         },
       },
       {
-        path:"inboxView",
-        name:"UserInboxView",
-        component:UserInboxView,
+        path: "inboxView",
+        name: "UserInboxView",
+        component: UserInboxView,
       },
-    ]
+    ],
   },
   {
     path: "/university",
@@ -86,18 +86,18 @@ const routes = [
         component: UniversityInfo,
       },
       {
-        path:"inbox",
-        component:UniversityInbox,
+        path: "inbox",
+        component: UniversityInbox,
         meta: {
           keepAlive: true,
         },
       },
       {
-        path:"inboxView",
-        name:"UniversityInboxView",
-        component:UniversityInboxView,
+        path: "inboxView",
+        name: "UniversityInboxView",
+        component: UniversityInboxView,
       },
-    ]
+    ],
   },
   {
     path: "/boos",
@@ -107,43 +107,44 @@ const routes = [
       {
         path: "",
         component: AdminCenter,
-      }, {
+      },
+      {
         path: "info",
         component: AdminInfo,
       },
       {
-        path:"add",
-        component:AdminAddUser,
+        path: "add",
+        component: AdminAddUser,
       },
       {
-        path:"modify",
-        component:AdminModifyUser,
+        path: "modify",
+        component: AdminModifyUser,
       },
       {
-        path:"inbox",
-        component:AdminInbox,
+        path: "inbox",
+        component: AdminInbox,
         meta: {
           keepAlive: true,
         },
       },
       {
-        path:"inboxView",
-        name:"AdminInboxView",
-        component:InboxView,
+        path: "inboxView",
+        name: "AdminInboxView",
+        component: InboxView,
       },
       {
-        path:"inboxSend",
-        component:InboxSend,
+        path: "inboxSend",
+        component: InboxSend,
       },
       {
-        path:"authUser",
-        component:AuthUser,
+        path: "authUser",
+        component: AuthUser,
       },
       {
-        path:"authUserView",
-        component:UserAuthView,
-      }
-    ]
+        path: "authUserView",
+        component: UserAuthView,
+      },
+    ],
   },
   {
     path: "/login/boos",

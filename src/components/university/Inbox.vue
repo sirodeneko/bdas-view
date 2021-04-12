@@ -51,7 +51,7 @@
 // @ is an alias to /src
 //import HelloWorld from "@/components/HelloWorld.vue";
 //import { userIdentityAuth, getUserMe } from "@/api/login";
-import { inboxList,inboxLook } from "@/api/login";
+import { inboxList, inboxLook } from "@/api/login";
 import { unixtimeToString } from "@/components/tools";
 
 export default {
@@ -119,8 +119,8 @@ export default {
       return unixtimeToString(time);
     },
     openInbox(item) {
-      inboxLook({inbox_id:item.id});
-      item.state=1;
+      inboxLook({ inbox_id: item.id });
+      item.state = 1;
       this.$store.commit("setInboxData", item);
       this.$router.push({
         path: `/user/inboxView`,

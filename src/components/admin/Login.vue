@@ -92,7 +92,7 @@ export default {
       e.preventDefault();
       this.form.validateFields((err, values) => {
         if (!err) {
-          values.u_type="admin";
+          values.u_type = "admin";
           postLogin(values)
             .then((res) => {
               // console.log("返回值：", res);
@@ -101,11 +101,10 @@ export default {
                 console.log("登陆失败", res);
               } else {
                 this.$message.success("登陆成功！！！");
-                
-                  this.$router.push({
-                    path: `/boos`,
-                  });
-                
+
+                this.$router.push({
+                  path: `/boos`,
+                });
               }
             })
             .catch((error) => {

@@ -143,7 +143,7 @@ export default {
                   this.$router.push({
                     path: `/user`,
                   });
-                }else{
+                } else {
                   this.$router.push({
                     path: `/university`,
                   });

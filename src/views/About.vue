@@ -12,21 +12,14 @@
 export default {
   name: "About",
   data() {
-    return {
-    };
+    return {};
   },
-  methods: {
-    
-  },
-  created() {
-   
-  },
+  methods: {},
+  created() {},
   // components: {
   //   HelloWorld,
   // },
 };
 </script>
 
-<style lang="less">
-
-</style>
+<style lang="less"></style>

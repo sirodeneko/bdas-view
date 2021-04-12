@@ -7,7 +7,7 @@
         >
         <router-link class="link-line nav-font bdas-right" :to="navBntUrl">
           <div class="nav-bnt">
-            <a-icon :type=iconType />&nbsp;{{ navBntMsg }}
+            <a-icon :type="iconType" />&nbsp;{{ navBntMsg }}
           </div>
         </router-link>
       </div>
@@ -70,13 +70,13 @@
 <script>
 // @ is an alias to /src
 //import HelloWorld from "@/components/HelloWorld.vue";
- import { getMe } from "@/api/login";
+import { getMe } from "@/api/login";
 
 export default {
   name: "Home",
   data() {
     return {
-      iconType:"login",
+      iconType: "login",
       navBntMsg: "登录",
       navBntUrl: "/login",
       universityNum: 233,
@@ -91,17 +91,17 @@ export default {
           case "user":
             this.navBntMsg = "用户中心";
             this.navBntUrl = "/user";
-            this.iconType="cluster";
+            this.iconType = "cluster";
             break;
           case "university":
             this.navBntMsg = "用户中心";
             this.navBntUrl = "/university";
-            this.iconType="cluster";
+            this.iconType = "cluster";
             break;
           default:
             this.navBntMsg = "登录";
             this.navBntUrl = "/login";
-            this.iconType="login";
+            this.iconType = "login";
         }
       });
     },
