@@ -61,14 +61,15 @@
 
             <a-menu-item key="20" @click="upInboxNotCnt">
               <a-icon type="mail" />
-              <a-badge :count="inboxNotCnt" class="bdas-badge">
-                <router-link to="/boos/inbox" class="a-inline">
+
+              <router-link to="/boos/inbox" class="a-inline">
+                <a-badge :count="inboxNotCnt" class="bdas-badge">
                   消息通知
-                </router-link>
-              </a-badge>
+                </a-badge>
+              </router-link>
             </a-menu-item>
             <a-menu-item key="21">
-              <a-icon type="notification"/>
+              <a-icon type="notification" />
               <router-link to="/boos/inboxSend" class="a-inline">
                 发送消息
               </router-link>
@@ -80,7 +81,10 @@
               <span>审核</span>
             </template>
             <a-menu-item key="40">
-              <a-icon type="contacts" /> 用户审核
+              <a-icon type="contacts" /> 
+              <router-link to="/boos/authUser" class="a-inline">
+                用户审核
+              </router-link>
             </a-menu-item>
             <a-menu-item key="41">
               <a-icon type="file-done" />证书审核
@@ -133,7 +137,7 @@ export default {
         transition: "margin-right 0.3s",
         height: "100vh",
       },
-      inboxNotCnt: 1,
+      inboxNotCnt: 0,
     };
   },
   methods: {
@@ -172,6 +176,7 @@ export default {
       console.log("onBreakpoint", broken);
     },
     upInboxNotCnt() {
+      console.log("调用了点击");
       inboxUnread().then((res) => {
         if (res.code == 0) {
           this.inboxNotCnt = res.data;
@@ -185,6 +190,17 @@ export default {
       });
     },
   },
+  // beforeRouteLeave(to, from, next) {
+  //   if (to.name === "AdminInboxView") {
+  //     this.$route.meta.keepAlive = true;
+  //     console.log("不销毁页面");
+  //   } else {
+  //     this.$route.meta.keepAlive = false;
+  //     console.log("销毁页面");
+  //     this.clear();
+  //   }
+  //   next();
+  // },
   created() {
     this.load();
   },

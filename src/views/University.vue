@@ -17,7 +17,9 @@
 
           <a-menu-item key="0">
             <a-icon type="bank" />
-            <router-link to="/university" class="a-inline"> 用户首页 </router-link></a-menu-item
+            <router-link to="/university" class="a-inline">
+              用户首页
+            </router-link></a-menu-item
           >
         </a-menu-item-group>
         <a-menu-item-group key="g1">
@@ -26,14 +28,22 @@
           </template>
           <a-menu-item key="1">
             <a-icon type="user" />
-            <router-link to="/university/info" class="a-inline"> 用户中心 </router-link>
+            <router-link to="/university/info" class="a-inline">
+              用户中心
+            </router-link>
           </a-menu-item>
         </a-menu-item-group>
         <a-menu-item-group key="g2">
           <template slot="title">
             <span>消息</span>
           </template>
-          <a-menu-item key="3"> <a-icon type="mail" /> 消息通知 </a-menu-item>
+          <a-menu-item key="3"> <a-icon type="mail"  @click="upInboxNotCnt"/>
+          <router-link to="/university/inbox" class="a-inline">
+              <a-badge :count="inboxNotCnt" class="bdas-badge">
+                消息通知
+              </a-badge>
+            </router-link>
+          </a-menu-item>
         </a-menu-item-group>
         <a-menu-item-group key="g3">
           <template slot="title">
@@ -57,7 +67,12 @@
     </a-layout-sider>
     <a-layout :style="rightLayout">
       <div class="navbar-bg"></div>
-      <div class="main-page"><router-view></router-view></div>
+      <div class="main-page">
+        <keep-alive>
+          <router-view v-if="$route.meta.keepAlive" />
+        </keep-alive>
+        <router-view v-if="!$route.meta.keepAlive" />
+      </div>
       <a-layout-footer style="text-align: center">
         Copyright © 2021 BDAS
       </a-layout-footer>
@@ -68,7 +83,7 @@
 <script>
 // @ is an alias to /src
 //import HelloWorld from "@/components/HelloWorld.vue";
-import { universityExit,getUniversityMe } from "@/api/login";
+import { universityExit, getUniversityMe,inboxUnread } from "@/api/login";
 
 export default {
   name: "University",
@@ -79,6 +94,7 @@ export default {
         transition: "margin-right 0.3s",
         height: "100vh",
       },
+      inboxNotCnt: 0,
     };
   },
   methods: {
@@ -93,14 +109,14 @@ export default {
               path: `/`,
             });
           } else {
-            this.$store.commit("setUniversityData",res.data);
+            this.$store.commit("setUniversityData", res.data);
           }
         })
         .catch((error) => {
           this.$message.error("网络错误！！！");
           this.$router.push({
-              path: `/`,
-            });
+            path: `/`,
+          });
           console.log("获取用户信息失败", error);
         });
     },
@@ -115,12 +131,19 @@ export default {
       }
       console.log("onBreakpoint", broken);
     },
-    exit(){
+    upInboxNotCnt() {
+      inboxUnread().then((res) => {
+        if (res.code == 0) {
+          this.inboxNotCnt = res.data;
+        }
+      });
+    },
+    exit() {
       universityExit();
-       this.$router.push({
-              path: `/`,
-            });
-    }
+      this.$router.push({
+        path: `/`,
+      });
+    },
   },
   created() {
     this.load();

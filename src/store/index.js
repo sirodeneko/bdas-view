@@ -9,6 +9,7 @@ export default new Vuex.Store({
     universityData: {},
     adminData:{},
     inboxData:{},
+    userAuth:{},
   },
   getters: {
     getUserDate(state) {
@@ -23,6 +24,9 @@ export default new Vuex.Store({
     getInboxData(state) {
       return state.inboxData;
     },
+    getUserAuth(state){
+      return state.userAuth;
+    }
   },
   mutations: {
     setUserDate(state,data) {
@@ -36,7 +40,11 @@ export default new Vuex.Store({
     },
     setInboxData(state,data){
       state.inboxData = data;
+    },
+    setUserAuth(state,data){
+      state.userAuth = data;
     }
+    
   },
   actions: {},
   modules: {},

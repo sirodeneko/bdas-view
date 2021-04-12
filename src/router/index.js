@@ -10,6 +10,7 @@ import UserCenter from "../components/user/Center.vue";
 import UserInfo from "../components/user/Info.vue";
 import University from "../views/University.vue";
 import UniversityCenter from "../components/university/Center.vue";
+import UniversityInfo from "../components/university/Info.vue";
 import Admin from "../views/Admin.vue";
 import AdminLogin from "../components/admin/Login.vue";
 import AdminCenter from "../components/admin/Center.vue";
@@ -19,6 +20,12 @@ import AdminModifyUser from "../components/admin/ModifyUser.vue";
 import AdminInbox from "../components/admin/Inbox.vue";
 import InboxView from "../components/admin/InboxView.vue";
 import InboxSend from "../components/admin/InboxSend.vue";
+import AuthUser from "../components/admin/AuthUser.vue";
+import UserAuthView from "../components/admin/AuthUserView.vue";
+import UserInbox from "../components/user/Inbox.vue";
+import UserInboxView from "../components/user/InboxView.vue";
+import UniversityInbox from "../components/university/Inbox.vue";
+import UniversityInboxView from "../components/university/InboxView.vue";
 
 Vue.use(VueRouter);
 
@@ -50,7 +57,19 @@ const routes = [
       {
         path: "info",
         component: UserInfo,
-      }
+      },
+      {
+        path:"inbox",
+        component:UserInbox,
+        meta: {
+          keepAlive: true,
+        },
+      },
+      {
+        path:"inboxView",
+        name:"UserInboxView",
+        component:UserInboxView,
+      },
     ]
   },
   {
@@ -64,8 +83,20 @@ const routes = [
       },
       {
         path: "info",
-        component: UserInfo,
-      }
+        component: UniversityInfo,
+      },
+      {
+        path:"inbox",
+        component:UniversityInbox,
+        meta: {
+          keepAlive: true,
+        },
+      },
+      {
+        path:"inboxView",
+        name:"UniversityInboxView",
+        component:UniversityInboxView,
+      },
     ]
   },
   {
@@ -97,11 +128,20 @@ const routes = [
       },
       {
         path:"inboxView",
+        name:"AdminInboxView",
         component:InboxView,
       },
       {
         path:"inboxSend",
         component:InboxSend,
+      },
+      {
+        path:"authUser",
+        component:AuthUser,
+      },
+      {
+        path:"authUserView",
+        component:UserAuthView,
       }
     ]
   },
