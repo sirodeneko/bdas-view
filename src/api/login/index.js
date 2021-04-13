@@ -26,6 +26,12 @@ const universityExit = () =>
 // 学校注册
 const universityRegister = (form) =>
   axios.post("/api/v1/university/register", form).then((res) => res.data);
+// 学校发送认证请求
+const universityCertificate = (form) =>
+  axios.post("/api/v1/university/studentAuth", form).then((res) => res.data);
+// 学校用户获取以认证的信息
+const universityCertificateList = (form) =>
+  axios.get("/api/v1/university/studentAuth/list",  { params: form }).then((res) => res.data);
 
 //获取管理员个人信息
 const getAdminMe = () => axios.get("/api/v1/admin/me").then((res) => res.data);
@@ -92,4 +98,6 @@ export {
   inboxSend,
   msgList,
   anthUser,
+  universityCertificate,
+  universityCertificateList,
 };

@@ -26,6 +26,8 @@ import UserInbox from "../components/user/Inbox.vue";
 import UserInboxView from "../components/user/InboxView.vue";
 import UniversityInbox from "../components/university/Inbox.vue";
 import UniversityInboxView from "../components/university/InboxView.vue";
+import UniversityCertificate from "../components/university/Certificate.vue";
+import UniversityCertificateList from "../components/university/CertificateList.vue"
 
 Vue.use(VueRouter);
 
@@ -96,6 +98,17 @@ const routes = [
         path: "inboxView",
         name: "UniversityInboxView",
         component: UniversityInboxView,
+      },
+      {
+        path: "certificate",
+        component: UniversityCertificate,
+      },
+      {
+        path: "certificate/list",
+        component: UniversityCertificateList,
+        meta: {
+          keepAlive: true,
+        },
       },
     ],
   },
