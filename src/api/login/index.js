@@ -19,6 +19,11 @@ const userExit = () =>
 // 普通用户查询证书
 const userCertification = () =>
   axios.get("/api/v1/user/certification/list").then((res) => res.data);
+// 普通用户查询证书详细信息
+const userCertificationFile = (form) =>
+  axios
+    .get("/api/v1/user/certification/getInfo", { params: form })
+    .then((res) => res.data);
 
 //获取学校个人信息
 const getUniversityMe = () =>
@@ -87,21 +92,21 @@ const inboxUnread = (form) =>
     .get("/api/v1/inbox/list/unread", { params: form })
     .then((res) => res.data);
 
-//更新用户信息
-const putRevise = (form) =>
-  axios.put("/api/v1/user/account", form).then((res) => res.data);
-
-// 读用户详情
-const getUser = (id) =>
-  axios.get(`/api/v1/users/${id}`).then((res) => res.data);
+// 获取未读消息数量
+const acFile = (form) =>
+  axios
+    .get("/api/v1/certificate/file", { params: form })
+    .then((res) => res.data);
+const acMsg = (form) =>
+  axios
+    .get("/api/v1/certificate/address", { params: form })
+    .then((res) => res.data);
 
 export {
   postLogin,
   postRegister,
   getMe,
   userExit,
-  putRevise,
-  getUser,
   getUserMe,
   userIdentityAuth,
   getUniversityMe,
@@ -124,4 +129,7 @@ export {
   acCertification,
   nextMsg,
   userCertification,
+  userCertificationFile,
+  acFile,
+  acMsg,
 };

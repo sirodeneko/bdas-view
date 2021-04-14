@@ -35,8 +35,13 @@
                   </div>
                 </a-tooltip>
               </div>
-              <template slot="actions" class="ant-card-actions" >
-                <div class="certificate-card-footer">查看&nbsp;<a-icon type="arrow-right" /></div>
+              <template slot="actions" class="ant-card-actions">
+                <div
+                  class="certificate-card-footer"
+                  @click="openCentificate(item)"
+                >
+                  查看&nbsp;<a-icon type="arrow-right" />
+                </div>
               </template>
             </a-card>
           </a-col>
@@ -62,15 +67,16 @@ export default {
   methods: {
     load() {
       // 初始化函数
-      userCertification().then((res) => {
+      userCertification()
+        .then((res) => {
           // console.log("返回值：", res);
           if (res.code != 0) {
             this.$message.error("获取证书失败");
             console.log("获取证书失败", res);
           } else {
-            if(res.data.total!=0){
-              this.isempty=false;
-              this.data=res.data.items;
+            if (res.data.total != 0) {
+              this.isempty = false;
+              this.data = res.data.items;
             }
           }
         })
@@ -87,6 +93,12 @@ export default {
       document.execCommand("copy");
       document.body.removeChild(aux);
       this.$message.success("复制成功");
+    },
+    openCentificate(item) {
+      this.$store.commit("setCertificate", item);
+      this.$router.push({
+        path: `/user/certificateView/${item.id}`,
+      });
     },
   },
   created() {
@@ -133,15 +145,15 @@ export default {
       white-space: nowrap;
       cursor: pointer;
     }
-    ul{
-      background-color: #6777EF;
-      border-radius:0 0 3px 3px;
+    ul {
+      background-color: #6777ef;
+      border-radius: 0 0 3px 3px;
       transition: 0.3s all;
-      &:hover{
+      &:hover {
         background-color: #4156fa;
       }
     }
-    .certificate-card-footer{
+    .certificate-card-footer {
       color: white;
     }
   }

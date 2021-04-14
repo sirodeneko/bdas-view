@@ -33,6 +33,9 @@ import UniversityCertificateList from "../components/university/CertificateList.
 import UniversityCertificateView from "../components/university/CertificateView.vue";
 import AdminAuthCertificate from "../components/admin/AuthCertificate.vue";
 import AdminAuthCertificateView from "../components/admin/AuthCertificateView.vue";
+import Authentication from "../components/Authentication.vue";
+import AuthFile from "../components/AuthFile.vue";
+import AuthMsg from "../components/AuthMsg.vue";
 
 Vue.use(VueRouter);
 
@@ -82,9 +85,9 @@ const routes = [
         component: UserCertificate,
       },
       {
-        path:"certificateView/:id",
-        component:UserCertificateView,
-      }
+        path: "certificateView/:id",
+        component: UserCertificateView,
+      },
     ],
   },
   {
@@ -188,6 +191,18 @@ const routes = [
     path: "/login/boos",
     name: "AdminLogin",
     component: AdminLogin,
+  },
+  {
+    path: "/authentication",
+    component: Authentication,
+  },
+  {
+    path: "/authFile",
+    component: AuthFile,
+  },
+  {
+    path: "/authMsg",
+    component: AuthMsg,
   },
   {
     path: "/about",

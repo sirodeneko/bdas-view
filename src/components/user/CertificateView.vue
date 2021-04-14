@@ -3,44 +3,40 @@
     <div class="center-header"><h1>证书下载</h1></div>
     <a-row>
       <a-col :span="24">
-        <a-row type="flex" :gutter="16">
-          <a-empty v-if="isempty" :span="24" style="width: 100%" />
-          <a-col
-            v-else
-            v-for="item in data"
-            :key="item.id"
-            style="width: 200px"
-          >
-            <a-card class="certificate-card">
-              <div>
-                <p><span>学历：</span> {{ item.level }}</p>
-              </div>
-              <div>
-                <p><span>专业：</span>{{ item.professional }}</p>
-              </div>
-              <div>
-                <p><span>编号：</span>{{ item.id }}</p>
-              </div>
-              <div style="display: flex; justify-self: start">
-                <span>地址：</span>
-                <a-tooltip placement="top">
-                  <template slot="title">
-                    <span>点击复制</span>
-                  </template>
-                  <div
-                    class="certificate-card-line"
-                    @click="copyText(item.address)"
-                  >
-                    {{ item.address }}
-                  </div>
-                </a-tooltip>
-              </div>
-              <template slot="actions" class="ant-card-actions" >
-                <div class="certificate-card-footer">查看&nbsp;<a-icon type="arrow-right" /></div>
-              </template>
-            </a-card>
-          </a-col>
-        </a-row>
+        <a-card class="certificate-card">
+          <div style="display: flex; justify-self: start; margin-bottom: 15px">
+            <div style="font-weight: 700">证书地址:</div>
+            <div
+              style="
+                margin-right: 15px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+              "
+            >
+              {{ item.address }}
+            </div>
+            <div
+              style="cursor: pointer; margin-right: 15px"
+              @click="copyText(item.address)"
+            >
+              复制地址
+            </div>
+            <a :href="'/api/v1/user/certification/file/' + data">
+              <div
+                style="cursor: pointer; color: #6793ef"
+                @click="copyText(item.address)"
+              >
+                下载证书
+              </div></a
+            >
+          </div>
+          <img
+            style="width: 100%"
+            :src="'/api/v1/user/certification/file/' + data"
+            preview="0"
+          />
+        </a-card>
       </a-col>
     </a-row>
   </div>
@@ -49,37 +45,39 @@
 <script>
 // @ is an alias to /src
 //import HelloWorld from "@/components/HelloWorld.vue";
-//import { userCertification } from "@/api/login";
+import { userCertificationFile } from "@/api/login";
 
 export default {
   name: "UserCertificateView",
   data() {
     return {
       isempty: true,
-      data: {},
-      id:this.$route.params.id,
+      data: "",
+      item: this.$store.getters.getCertificate,
+      id: this.$route.params.id,
     };
   },
   methods: {
     load() {
-      console.log("参数",this.id);
-      // 初始化函数
-      // userCertification().then((res) => {
-      //     // console.log("返回值：", res);
-      //     if (res.code != 0) {
-      //       this.$message.error("获取证书失败");
-      //       console.log("获取证书失败", res);
-      //     } else {
-      //       if(res.data.total!=0){
-      //         this.isempty=false;
-      //         this.data=res.data.items;
-      //       }
-      //     }
-      //   })
-      //   .catch((error) => {
-      //     this.$message.error("网络错误！！！");
-      //     console.log("网络错误！！！", error);
-      //   });
+      //console.log("参数",this.id);
+      //初始化函数
+      let form = {
+        id: this.id,
+      };
+      userCertificationFile(form)
+        .then((res) => {
+          // console.log("返回值：", res);
+          if (res.code != 0) {
+            this.$message.error("获取证书失败");
+            console.log("获取证书失败", res);
+          } else {
+            this.data = res.data;
+          }
+        })
+        .catch((error) => {
+          this.$message.error("网络错误！！！");
+          console.log("网络错误！！！", error);
+        });
     },
     copyText(str) {
       var aux = document.createElement("input");
@@ -124,28 +122,6 @@ export default {
   .certificate-card {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.03);
     border-radius: 3px;
-    white-space: nowrap;
-    span {
-      font-weight: 700;
-    }
-    .certificate-card-line {
-      width: 100%;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      cursor: pointer;
-    }
-    ul{
-      background-color: #6777EF;
-      border-radius:0 0 3px 3px;
-      transition: 0.3s all;
-      &:hover{
-        background-color: #4156fa;
-      }
-    }
-    .certificate-card-footer{
-      color: white;
-    }
   }
 }
 </style>
