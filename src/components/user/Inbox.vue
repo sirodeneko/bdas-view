@@ -123,7 +123,7 @@ export default {
       item.state = 1;
       this.$store.commit("setInboxData", item);
       this.$router.push({
-        path: `/university/inboxView`,
+        path: `/user/inboxView`,
       });
     },
   },

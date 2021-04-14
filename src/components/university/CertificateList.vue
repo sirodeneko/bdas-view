@@ -5,11 +5,40 @@
     </div>
     <a-row>
       <a-col :span="24" class="inbox-card">
-        <a-card style="" class="shadow-light">
+        <a-card
+          :headStyle="headStyles"
+          title="查询历史提交"
+          class="shadow-light"
+        >
+          <div slot="extra" style="display: flex; justify-content: center">
+            <a-month-picker
+              style="width: 150px; margin-right: 5px"
+              v-model="form.time_limit"
+              :format="dateFormat"
+              placeholder="选择月份"
+            />
+            <a-select
+              style="width: 80px; margin-right: 5px"
+              v-model="form.status"
+            >
+              <a-select-option value="1"> 等待 </a-select-option>
+              <a-select-option value="2"> 运行中 </a-select-option>
+              <a-select-option value="3"> 失败 </a-select-option>
+              <a-select-option value="4"> 成功 </a-select-option>
+              <a-select-option value="5"> 不通过 </a-select-option>
+            </a-select>
+            <a-input
+              placeholder="学生姓名"
+              style="width: 100px; margin-right: 5px"
+              v-model="form.name"
+            />
+            <a-button type="primary" @click="handleButton"> 查询 </a-button>
+          </div>
+
           <a-row class="inbox-header inbox-background">
             <a-col :span="3">编号 </a-col>
             <a-col :span="5">创建时间 </a-col>
-            <a-col :span="8">标题 </a-col>
+            <a-col :span="8">学生姓名 </a-col>
             <a-col :span="4">状态 </a-col>
             <a-col :span="4">操作 </a-col>
           </a-row>
@@ -22,10 +51,16 @@
           >
             <a-col :span="3">{{ item.id }} </a-col>
             <a-col :span="5">{{ timeToString(item.created_at) }} </a-col>
-            <a-col :span="8">{{ item.title }} </a-col>
+            <a-col :span="8">{{ item.student_name }} </a-col>
             <a-col :span="4">
-              <div v-if="item.state == 1">已读</div>
-              <div v-else style="color: red">未读</div>
+              <div v-if="item.states == 1">等待审核</div>
+              <div v-else-if="item.states == 2">运行中</div>
+              <div v-else-if="item.states == 3" style="color: red">失败</div>
+              <div v-else-if="item.states == 4" style="color: #0075ff">
+                成功
+              </div>
+              <div v-else-if="item.states == 5" style="color: red">不通过</div>
+              <div v-else style="color: red">未知</div>
             </a-col>
             <a-col :span="4">
               <a-button type="primary" @click="openInbox(item)">
@@ -38,6 +73,7 @@
               :hideOnSinglePage="true"
               :defaultPageSize="pageSize"
               :total="total"
+              :current="current"
               @change="pageChange"
             />
           </a-row>
@@ -51,8 +87,9 @@
 // @ is an alias to /src
 //import HelloWorld from "@/components/HelloWorld.vue";
 //import { userIdentityAuth, getUserMe } from "@/api/login";
-import {  universityCertificateList } from "@/api/login";
+import { universityCertificateList } from "@/api/login";
 import { unixtimeToString } from "@/components/tools";
+import moment from "moment";
 
 export default {
   name: "UserInbox",
@@ -68,17 +105,24 @@ export default {
         "text-align": "left",
         "font-weight": 700,
       },
+      dateFormat: "YYYY/MM/DD",
       data: [],
       isEmpty: true,
       pageSize: 10,
       page: 1,
       total: 10,
+      current: 1,
+      form: {
+        time_limit: moment(0),
+        name: "",
+        status: "",
+      },
     };
   },
   methods: {
     async load() {
       // 初始化函数
-      let inboxTotal = await this.getInboxList(0);
+      let inboxTotal = await this.getList(0, this.form);
       this.total = inboxTotal.total;
       this.data = inboxTotal.items;
       if (inboxTotal.total != 0) {
@@ -88,19 +132,23 @@ export default {
 
     pageChange(page, pageSize) {
       //console.log(page, pageSize);
-      this.getInboxList((page - 1) * pageSize).then((data) => {
+      this.getInboxList((page - 1) * pageSize, this.form).then((data) => {
         this.total = data.total;
         this.data = data.items;
         console.log(data);
       });
     },
 
-    getInboxList(offset) {
+    getList(offset, data) {
       let form = {
         limit: 10,
         offset: offset,
+        time_limit: data.time_limit.unix(),
+        name: data.name,
+        status: Number(data.status),
       };
-      return inboxList(form)
+      console.log(form);
+      return universityCertificateList(form)
         .then((res) => {
           // console.log("返回值：", res);
           if (res.code != 0) {
@@ -119,11 +167,16 @@ export default {
       return unixtimeToString(time);
     },
     openInbox(item) {
-      inboxLook({ inbox_id: item.id });
-      item.state = 1;
-      this.$store.commit("setInboxData", item);
+      this.$store.commit("setCertificate", item);
       this.$router.push({
-        path: `/user/inboxView`,
+        path: `/university/certificateView`,
+      });
+    },
+    handleButton() {
+      this.getList(0, this.form).then((data) => {
+        this.total = data.total;
+        this.data = data.items;
+        this.current = 1;
       });
     },
   },

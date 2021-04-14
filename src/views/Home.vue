@@ -3,7 +3,7 @@
     <div id="nav">
       <div class="container home-nav">
         <router-link class="link-line nav-font" to="/"
-          >DBAS学位认证系统</router-link
+          >DBAS学位认证系统(演示版)</router-link
         >
         <router-link class="link-line nav-font bdas-right" :to="navBntUrl">
           <div class="nav-bnt">

@@ -87,7 +87,10 @@
               </router-link>
             </a-menu-item>
             <a-menu-item key="41">
-              <a-icon type="file-done" />证书审核
+              <a-icon type="file-done" />
+              <router-link to="/boos/authCertificate" class="a-inline">
+                证书审核
+              </router-link>
             </a-menu-item>
           </a-menu-item-group>
 

@@ -32,7 +32,12 @@
               用户中心
             </router-link>
           </a-menu-item>
-          <a-menu-item key="2"> <a-icon type="audit" /> 我的证书 </a-menu-item>
+          <a-menu-item key="2">
+            <a-icon type="audit" />
+            <router-link to="/user/certificate" class="a-inline">
+              我的证书
+            </router-link>
+          </a-menu-item>
         </a-menu-item-group>
         <a-menu-item-group key="g2">
           <template slot="title">

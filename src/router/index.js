@@ -8,6 +8,8 @@ import Page404 from "../views/Page404.vue";
 import User from "../views/User.vue";
 import UserCenter from "../components/user/Center.vue";
 import UserInfo from "../components/user/Info.vue";
+import UserCertificate from "../components/user/Certificate.vue";
+import UserCertificateView from "../components/user/CertificateView.vue";
 import University from "../views/University.vue";
 import UniversityCenter from "../components/university/Center.vue";
 import UniversityInfo from "../components/university/Info.vue";
@@ -27,7 +29,10 @@ import UserInboxView from "../components/user/InboxView.vue";
 import UniversityInbox from "../components/university/Inbox.vue";
 import UniversityInboxView from "../components/university/InboxView.vue";
 import UniversityCertificate from "../components/university/Certificate.vue";
-import UniversityCertificateList from "../components/university/CertificateList.vue"
+import UniversityCertificateList from "../components/university/CertificateList.vue";
+import UniversityCertificateView from "../components/university/CertificateView.vue";
+import AdminAuthCertificate from "../components/admin/AuthCertificate.vue";
+import AdminAuthCertificateView from "../components/admin/AuthCertificateView.vue";
 
 Vue.use(VueRouter);
 
@@ -72,6 +77,14 @@ const routes = [
         name: "UserInboxView",
         component: UserInboxView,
       },
+      {
+        path: "certificate",
+        component: UserCertificate,
+      },
+      {
+        path:"certificateView/:id",
+        component:UserCertificateView,
+      }
     ],
   },
   {
@@ -109,6 +122,10 @@ const routes = [
         meta: {
           keepAlive: true,
         },
+      },
+      {
+        path: "certificateView",
+        component: UniversityCertificateView,
       },
     ],
   },
@@ -156,6 +173,14 @@ const routes = [
       {
         path: "authUserView",
         component: UserAuthView,
+      },
+      {
+        path: "authCertificate",
+        component: AdminAuthCertificate,
+      },
+      {
+        path: "authCertificateView",
+        component: AdminAuthCertificateView,
       },
     ],
   },

@@ -56,12 +56,12 @@
               证书提交
             </router-link>
           </a-menu-item>
-          <a-menu-item key="5"> <a-icon type="audit" />
-            
-           <router-link to="/university/certificate/list" class="a-inline">
+          <a-menu-item key="5">
+            <a-icon type="audit" />
+            <router-link to="/university/certificate/list" class="a-inline">
               历史提交
             </router-link>
-           </a-menu-item>
+          </a-menu-item>
         </a-menu-item-group>
         <a-menu-item-group key="g4">
           <template slot="title">

@@ -16,6 +16,9 @@ const userIdentityAuth = (form) =>
 // 普通用户退出登陆
 const userExit = () =>
   axios.delete("/api/v1/user/logout").then((res) => res.data);
+// 普通用户查询证书
+const userCertification = () =>
+  axios.get("/api/v1/user/certification/list").then((res) => res.data);
 
 //获取学校个人信息
 const getUniversityMe = () =>
@@ -31,7 +34,14 @@ const universityCertificate = (form) =>
   axios.post("/api/v1/university/studentAuth", form).then((res) => res.data);
 // 学校用户获取以认证的信息
 const universityCertificateList = (form) =>
-  axios.get("/api/v1/university/studentAuth/list",  { params: form }).then((res) => res.data);
+  axios
+    .get("/api/v1/university/studentAuth/list", { params: form })
+    .then((res) => res.data);
+// 学校用户获取以认证的信息的详细信息
+const universityCertificateMsg = (form) =>
+  axios
+    .get("/api/v1/university/studentAuth/list/msg", { params: form })
+    .then((res) => res.data);
 
 //获取管理员个人信息
 const getAdminMe = () => axios.get("/api/v1/admin/me").then((res) => res.data);
@@ -53,6 +63,17 @@ const msgList = (form) =>
 //获取待审核消息
 const anthUser = (form) =>
   axios.put("/api/v1/admin/authenticated/user", form).then((res) => res.data);
+// 发送消息
+const inboxSend = (form) =>
+  axios.post("/api/v1/admin/inbox/send", form).then((res) => res.data);
+// 审核学历证书信息
+const acCertification = (form) =>
+  axios
+    .put("/api/v1/admin/academic/certification", form)
+    .then((res) => res.data);
+// 获取下一条待审核消息
+const nextMsg = (form) =>
+  axios.get("/api/v1/admin/msg", { params: form }).then((res) => res.data);
 
 // 获取消息inbox
 const inboxList = (form) =>
@@ -61,11 +82,10 @@ const inboxList = (form) =>
 const inboxLook = (form) =>
   axios.get("/api/v1/inbox/looked", { params: form }).then((res) => res.data);
 // 获取未读消息数量
-const inboxUnread = () =>
-  axios.get("/api/v1/inbox/list/unread").then((res) => res.data);
-// 发送消息
-const inboxSend = (form) =>
-  axios.post("/api/v1/admin/inbox/send", form).then((res) => res.data);
+const inboxUnread = (form) =>
+  axios
+    .get("/api/v1/inbox/list/unread", { params: form })
+    .then((res) => res.data);
 
 //更新用户信息
 const putRevise = (form) =>
@@ -100,4 +120,8 @@ export {
   anthUser,
   universityCertificate,
   universityCertificateList,
+  universityCertificateMsg,
+  acCertification,
+  nextMsg,
+  userCertification,
 };

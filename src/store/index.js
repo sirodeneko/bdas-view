@@ -10,6 +10,7 @@ export default new Vuex.Store({
     adminData: {},
     inboxData: {},
     userAuth: {},
+    certificate: {},
   },
   getters: {
     getUserDate(state) {
@@ -27,6 +28,9 @@ export default new Vuex.Store({
     getUserAuth(state) {
       return state.userAuth;
     },
+    getCertificate(state) {
+      return state.certificate;
+    },
   },
   mutations: {
     setUserDate(state, data) {
@@ -43,6 +47,9 @@ export default new Vuex.Store({
     },
     setUserAuth(state, data) {
       state.userAuth = data;
+    },
+    setCertificate(state, data) {
+      state.certificate = data;
     },
   },
   actions: {},
