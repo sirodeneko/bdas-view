@@ -157,7 +157,7 @@ export default {
         return;
       }
       this.$message.loading({ content: "Loading...", key });
-        this.isEmpty=true;
+      this.isEmpty = true;
       acFile(form)
         .then((res) => {
           if (res.code != 0) {
@@ -177,7 +177,7 @@ export default {
             } else {
               this.item = res.data;
               this.$message.success({ content: "获取成功!", key, duration: 2 });
-              this.isEmpty=false;
+              this.isEmpty = false;
             }
           }
         })

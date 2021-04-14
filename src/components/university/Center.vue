@@ -5,7 +5,29 @@
       <a-col :span="24">
         <a-card title="公告" class="bdas-card" :headStyle="headStyles">
           <div class="">
-            <strong> 沈冠宇是傻逼(学校界面) </strong>
+            <strong>
+              你好，欢迎使用DBAS学位学历认证系统。
+              <br />
+              本系统是基于区块链进行用户学历信息的存储，
+              保证用户的学历信息的真实性，不可篡改性。
+              <br />
+              同时，对链上数据进行加密处理，以保证用户信息的安全性。
+              <br />
+              本系统为演示系统，仅对主要功能进行实现。
+              <br />
+              <br />
+              管理员登陆地址：<a href="/login/boos">点击这里</a>
+              <br />
+              管理员账号:zlh123456
+              <br />
+              高校账号:jxufe123 宇宙第一大学
+              <br />
+              普通用户账号:yf123456
+              <br />
+              密码统一 12345678
+              <br />
+              <br />
+            </strong>
           </div>
         </a-card>
       </a-col>

@@ -28,7 +28,7 @@
               <a-form-model-item label="身份证号">
                 <a-input v-model="form.card_code" />
               </a-form-model-item>
-              
+
               <a-form-model-item
                 :wrapper-col="{ md: { offset: 10 }, offset: 4 }"
               >
@@ -118,7 +118,7 @@ export default {
       form: {
         address: "",
         card_code: "",
-        name:"",
+        name: "",
       },
       item: {},
       loadingKey: "key",
@@ -146,14 +146,14 @@ export default {
       let form = {
         address: this.form.address,
         card_code: this.form.card_code,
-        name:this.form.name,
+        name: this.form.name,
       };
-      if (!form.address || !form.card_code ||!form.name) {
+      if (!form.address || !form.card_code || !form.name) {
         this.$message.error("填写的信息有误！");
         return;
       }
       this.$message.loading({ content: "Loading...", key });
-        this.isEmpty=true;
+      this.isEmpty = true;
       acMsg(form)
         .then((res) => {
           if (res.code != 0) {
@@ -173,7 +173,7 @@ export default {
             } else {
               this.item = res.data;
               this.$message.success({ content: "获取成功!", key, duration: 2 });
-              this.isEmpty=false;
+              this.isEmpty = false;
             }
           }
         })

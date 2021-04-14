@@ -3,7 +3,7 @@
     <div class="center-header">
       <h1>消息列表(管理员)</h1>
       <a-button type="primary" style="margin-left: auto"
-        ><router-link to="/boos/sendInbox"
+        ><router-link to="/boos/inboxSend"
           ><a-icon type="plus" /> 发送消息
         </router-link>
       </a-button>

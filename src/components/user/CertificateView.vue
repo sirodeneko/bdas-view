@@ -23,12 +23,7 @@
               复制地址
             </div>
             <a :href="'/api/v1/user/certification/file/' + data">
-              <div
-                style="cursor: pointer; color: #6793ef"
-                @click="copyText(item.address)"
-              >
-                下载证书
-              </div></a
+              <div style="cursor: pointer; color: #6793ef">下载证书</div></a
             >
           </div>
           <img
